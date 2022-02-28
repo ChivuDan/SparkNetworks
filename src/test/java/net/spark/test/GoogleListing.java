@@ -1,12 +1,10 @@
-package net.spark.www;
+package net.spark.test;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -20,7 +18,7 @@ public class GoogleListing {
     //We should add @Test annotation that JUnit will run below method
     @Test
     public void getCatImages() {
-        SetProperties.webDriverSet();
+        SetProperties.setWebDriver();
         //Step 1- Driver Instantiation: Instantiate driver object as ChromeDriver
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -46,7 +44,7 @@ public class GoogleListing {
     //Start to write our test method.
     public void verifyGoogleSearchResultPosition(){
         //Step 0- Verify system properties
-        SetProperties.webDriverSet();
+        SetProperties.setWebDriver();
         //Step 1- Driver Instantiation: Instantiate driver object as ChromeDriver
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
