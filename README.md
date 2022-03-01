@@ -1,5 +1,5 @@
 # SparkNetworks
-This project is used to take a screenshot of the result of the query "funny cat memes" on Google and to validate that Sparks Networks is the first result in the query from Google.
+This project is used to take a screenshot (path is ./SparkScreenshots/Screen.png --> it will create a SparkScreenshots folder and place the SS there) of the result of the query "funny cat memes" on Google and to validate that Sparks Networks is the first result in the query from Google.
 
 It was built using Maven, the dependencies are listed in the .pom file. (selenium-java, webdrivermanager, junit-jupiter-api)
 
