@@ -20,7 +20,7 @@ public class GoogleListing {
     public void getCatImages() {
         //Step 0- Verify system properties
         WebDriver driver = initWebDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = initWebDriverWait(driver, 30);
         searchGoogle("funny cat memes", driver, wait);
         TakesScreenshot screenshot = (TakesScreenshot) driver;
         File source = screenshot.getScreenshotAs(OutputType.FILE);
@@ -40,7 +40,7 @@ public class GoogleListing {
         String query = "Spark Networks";
         //Step 1- Driver Instantiation: Instantiate driver object as ChromeDriver
         WebDriver driver = initWebDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = initWebDriverWait(driver, 30);
         //Step 2- Navigation: Open google
         searchGoogle(query, driver, wait);
         /*Step 3- Assertion: Check the position of the element in the DOM, if it doesn't return true, either the element changed name, or it is in another position*/
@@ -69,9 +69,15 @@ public class GoogleListing {
         driver.close();
         driver.quit();
     }
+
     private WebDriver initWebDriver() {
         SetProperties.setWebDriver();
         WebDriver driver = new ChromeDriver();
         return driver;
+    }
+
+    private WebDriverWait initWebDriverWait(WebDriver driver, int timeOutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+        return wait;
     }
 }
