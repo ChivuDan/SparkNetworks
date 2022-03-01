@@ -45,7 +45,7 @@ public class GoogleListing {
         searchGoogle(query, driver, wait);
         /*Step 3- Assertion: Check the position of the element in the DOM, if it doesn't return true, either the element changed name, or it is in another position*/
         wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]"))));
-        assertEquals(query, driver.findElement(By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]")).getText());
+        assert(driver.findElement(By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]")).getText().contains(query));
         //Step 4- Close Driver
         closeChromeDriver(driver);
     }
