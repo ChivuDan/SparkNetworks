@@ -10,8 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.openqa.selenium.Keys.ENTER;
 
 
@@ -30,6 +29,7 @@ public class GoogleListing {
             FileUtils.copyFile(source, new File("./SparkScreenshots/Screen.png"));
         } catch (IOException e) {
             e.printStackTrace();
+            fail("Screenshot could not be taken");
         }
         System.out.println("Screenshot is captured");
         closeChromeDriver(driver);
