@@ -65,7 +65,7 @@ public class GoogleListing {
     }
 
     private void closeChromeDriver(WebDriver driver) {
-        // Quit Driver
+        // Close and quit Driver
         driver.close();
         driver.quit();
     }
