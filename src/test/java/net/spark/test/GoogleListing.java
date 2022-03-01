@@ -20,10 +20,10 @@ public class GoogleListing {
     @Test
     public void getCatImages() {
         //Step 0- Verify system properties
-        System.setProperty("webdriver.chrome.driver", System.getenv("webdriver.chrome.driver"));
+        SetProperties.setWebDriver();
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        searchGoogle("funny cat memes",driver,wait);
+        searchGoogle("funny cat memes", driver, wait);
         TakesScreenshot screenshot = (TakesScreenshot) driver;
         File source = screenshot.getScreenshotAs(OutputType.FILE);
         try {
@@ -32,31 +32,27 @@ public class GoogleListing {
             e.printStackTrace();
         }
         System.out.println("Screenshot is captured");
-        driver.close();
-        driver.quit();
+        closeChromeDriver(driver);
     }
 
     @Test
-    public void verifyGoogleSearchResultPosition(){
+    public void verifyGoogleSearchResultPosition() {
         //Step 0- Verify system properties
         SetProperties.setWebDriver();
         //Step 1- Driver Instantiation: Instantiate driver object as ChromeDriver
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
         //Step 2- Navigation: Open google
-        searchGoogle("Spark Networks",driver,wait);
+        searchGoogle("Spark Networks", driver, wait);
         /*Step 3- Assertion: Check the position of the element in the DOM, if it doesn't return true, either the element changed name, or it is in another position*/
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]"))));
-       //assertNotNull(driver.findElement(By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]")));
-       assertEquals("Spark Networks SE | A global leading dating company", driver.findElement(By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]")).getText());        //Step 4- Close Driver
-        driver.close();
-        //Step 5- Quit Driver
-        driver.quit();
-
+        //assertNotNull(driver.findElement(By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]")));
+        assertEquals("Spark Networks SE | A global leading dating company", driver.findElement(By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]")).getText());        //Step 4- Close Driver
+        closeChromeDriver(driver);
     }
 
     //Step 0- Driver Instantiation: Instantiate driver object as ChromeDriver and WebDriverWait
-    private void searchGoogle(String query, WebDriver driver, WebDriverWait wait){
+    private void searchGoogle(String query, WebDriver driver, WebDriverWait wait) {
         //Step 1- Verify system properties
         SetProperties.setWebDriver();
         //Step 2- Navigation: Open google
@@ -69,5 +65,10 @@ public class GoogleListing {
         driver.findElement(By.xpath("//*[@name='q']")).sendKeys(query + Keys.ENTER);
     }
 
+    private void closeChromeDriver(WebDriver driver) {
+        // Quit Driver
+        driver.close();
+        driver.quit();
+    }
 
 }
