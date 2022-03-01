@@ -3,4 +3,7 @@ This project is used to take a screenshot (path is ./SparkScreenshots/Screen.png
 
 It was built using Maven, the dependencies are listed in the .pom file. (selenium-java, webdrivermanager, junit-jupiter-api)
 
-To run it, you will need ChromeDriver 98.0.4758.80 (add webdriver.chrome.driver to PATH variable point to the chromedriver.exe path) and ChromeBrowser Version 98.0.4758.102. 
+To run it, you will need:
+Java JDK_1_8 (configured to path variable)
+ChromeDriver 98.0.4758.80 (add webdriver.chrome.driver to PATH variable point to the chromedriver.exe path) https://chromedriver.storage.googleapis.com/index.html?path=98.0.4758.102/
+Chrome Browser Version 98.0.4758.102. 
