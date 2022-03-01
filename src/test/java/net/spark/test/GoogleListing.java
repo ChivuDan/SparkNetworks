@@ -19,8 +19,7 @@ public class GoogleListing {
     @Test
     public void getCatImages() {
         //Step 0- Verify system properties
-        SetProperties.setWebDriver();
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = initWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
         searchGoogle("funny cat memes", driver, wait);
         TakesScreenshot screenshot = (TakesScreenshot) driver;
@@ -38,16 +37,16 @@ public class GoogleListing {
     @Test
     public void verifyGoogleSearchResultPosition() {
         //Step 0- Verify system properties
-        SetProperties.setWebDriver();
+        String query = "Spark Networks";
         //Step 1- Driver Instantiation: Instantiate driver object as ChromeDriver
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = initWebDriver();
         WebDriverWait wait = new WebDriverWait(driver, 30);
         //Step 2- Navigation: Open google
-        searchGoogle("Spark Networks", driver, wait);
+        searchGoogle(query, driver, wait);
         /*Step 3- Assertion: Check the position of the element in the DOM, if it doesn't return true, either the element changed name, or it is in another position*/
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]"))));
-        //assertNotNull(driver.findElement(By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]")));
-        assertEquals("Spark Networks SE | A global leading dating company", driver.findElement(By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]")).getText());        //Step 4- Close Driver
+        wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]"))));
+        assertEquals(query, driver.findElement(By.xpath("//*[@id='rso']/*[1]//*[contains(text(), 'Spark Networks SE')]")).getText());
+        //Step 4- Close Driver
         closeChromeDriver(driver);
     }
 
@@ -70,5 +69,9 @@ public class GoogleListing {
         driver.close();
         driver.quit();
     }
-
+    private WebDriver initWebDriver() {
+        SetProperties.setWebDriver();
+        WebDriver driver = new ChromeDriver();
+        return driver;
+    }
 }
