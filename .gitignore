@@ -2,4 +2,5 @@
 /shelf/
 /.idea/workspace.xml
 /.idea
-/main
+/src/main
+/SparkNetworks.iml
